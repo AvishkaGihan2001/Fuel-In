@@ -31,37 +31,4 @@
 			<button class="btn btn-danger">Cancel</button>
 		</div>
 	</div>
-	<?php
-	include 'mysqldbconnection.php';
-
-	if(isset($_POST["Employee_Id"]) && $_POST["Employee_Id"]){
-		$employeereg=$_POST["firstname"];
-		$employeereg=$_POST["lastname"];
-		$employeereg=$_POST["email"];
-		$employeereg=$_POST["gender"];
-		$employeereg=$_POST["category"];
-		$employeereg=$_POST["password"];
-		$employeereg=$_POST["re_password"];
-
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        } else {
-			$sql = "insert into employee (Employee_Id,firstname,lastname,email,gender,category,password,re_password) values ('" . $firstname . "', '" . $lastname . "', '" . $email . "', '" . $gender . "', '" . $category . "', '" . $password . "', '" . $re_password . "') ";
-            if ($conn->query($sql) === TRUE) {
-                echo "<script> alert('Employee details added successfully');</script>";
-
-                //  header("Location: staffAll.php");
-                $_POST["stname"] = null;
-                exit();
-            } else {
-                echo "<script> alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
-            }
-            $conn->close();
-
-		}
-	}
-	
-	?>
-
-
     <?php include 'Footer.php'?>
