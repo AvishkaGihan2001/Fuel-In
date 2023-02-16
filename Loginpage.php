@@ -1,19 +1,62 @@
 <?php include 'Header.php'?>
-<!-- <div class="container-fluid" >`
-</div> -->
-<div class="container">
-	<div style="margin-top:50px;width:100%;max-width: 340px ;">
-		<div style="text-align: center;">
-		<img src="Logo.png"  style="width:250px;">
-		</div>
-		<h3 style="text-align: center;">
-			Login page
-		</h3>
-		<input class="form-control" type="email" name="email" placeholder="Email" autofocus>
-		<br />
-		<input class="form-control" type="password" name="password" placeholder="Password">
-		<br/>
-		<button class="btn btn-primary">Login</button>		
-	</div>
-</div>
-<?php include 'Footer.php'?>  
+<style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-image: linear-gradient(#1D976C,#93F9B9);
+            background-size: auto;
+            background-repeat: no-repeat;
+            color: #c2c2c2;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        #uname {
+            padding: 10px;
+            border: grey 1px solid;
+            width: 270px;
+        }
+        .pass {
+            padding: 10px;
+            border: grey 1px solid;
+            width: 270px;
+        }
+        #login-content {
+            margin: auto;
+            margin-top: 12%;
+
+            text-align: center;
+            padding: 30px;
+            width: 350px;
+            color: white;
+            -webkit-box-shadow: 0px 0px 35px 3px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 0px 35px 3px rgba(0, 0, 0, 1);
+            box-shadow: 0px 0px 35px 3px rgba(0, 0, 0, 1);
+        }
+        input[type="submit"] {
+            padding: 10px;
+            width: 120px;
+            border: none;
+            background-color: darkcyan;
+            color: white;
+            width: 290px;
+        }
+        h1 {
+            font-family: Arial !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullbg" style="width: 100%; height: 100%;">
+        <div id="login-content">
+            <form>
+                <h1>Login Form</h1>
+                <input type="text" name="uname" id="uname" placeholder="&#128100; Email or Phone">
+                <br><br>
+                <input type="password" name="upass" id="upass" class="pass" placeholder="&#128274; Password">
+                <br><br>
+                <div style="text-align: left; margin-left: 30px;">
+                    <label>Forgot password?</label>
+                </div>
+                <br>
+                <input type="submit" value="LOGIN">
+            </form>
+        </div>
+<?php include 'Footer.php'?>
