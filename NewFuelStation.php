@@ -1,11 +1,12 @@
 <?php include 'Header.php'?>
-<?php include 'adminNavBar.php' ?>
 <style>
     body{
         background-image: linear-gradient(#DD5E89, #F7BB97);
         background-size: auto;
 }
 </style>
+<?php include 'mysqldbconnection.php'; ?>
+
 <div style="margin: auto; width: auto; padding: 50px; float: left;">
 <h3 style="padding-bottom: 15px;">Fuel Station register</h3>
         <form action="addStaffDetails.php" method="POST" name="staffadd">
@@ -17,17 +18,42 @@
             <input type="text" name="address" id="address" value="" required />
             <br /><br />
 
-            <label>Capacity of the Station </label><br>
+            <label>Station contact number :</label><br>
             <input type="number" name="capacity" id="capacity" value="" required />
             <br /><br/>
 
-            <label>Station contact number : </label><br>
-            <input type="text" name="address" id="address" value="" required />
+            <label>Capacity of the Station : </label><br>
+            <input type="number" name="address" id="address" value="" required />
             <br /><br />
 
             <input class="btn btn-success" type="submit" value="Submit" />
         </form>
 </div>
+<?php
+if(isset($_POST["name"])){
+    $fuelstation=$_POST["name"];
+    $fuelstation=$_POST["address"];
+    $fuelstation=$_post["contactno"];
+    $fuelstation=$_POST["capacity"];
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    } else {
+        $sql = "insert into fuelstation (name,address,contactno,capacity) 
+        values ('" . $name . "', '" . $address . "', '" . $contactno . "', '" . $capacity . "')";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script> alert('Employee details added successfully');</script>";
+             header("Location: NewFuelStation.php");
+            $_POST["stname"] = null;
+            exit();
+        } else {
+            echo "<script> alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+        }
+        $conn->close();
+
+    }
+
+}
+?>
 
 <div style="margin: auto; width: auto; padding: 50px; float: left;">
 <h3 style="padding-bottom: 15px;">Fuel Station deatils</h3>
@@ -44,7 +70,6 @@
                 </tr>
             </thead>
             <tbody>
-                <?php include 'mysqldbconnection.php'; ?>
                 <?php
 
                 if (!$conn) {
