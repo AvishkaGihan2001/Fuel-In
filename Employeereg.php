@@ -43,7 +43,7 @@
             <option value="">Select the type</option>
             <option value="1">Admin</option>
             <option value="2">Dispatch Office</option>
-            <option value="3">fuel manger</option>
+            <option value="3">station manger</option>
         </select>
         <br /><br />
 
