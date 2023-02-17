@@ -11,7 +11,8 @@
 <style>
   nav ul li a:hover {
     background-color: gray;
-    color: white !important;
+    color: black !important;
+    cursor: pointer;
   }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">

@@ -10,6 +10,7 @@
         body {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             background-image: linear-gradient(#1D976C, #93F9B9);
+            min-height: 80vh;
             color: #c2c2c2;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
@@ -51,6 +52,22 @@
         h1 {
             font-family: Arial !important;
         }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: '5000px' !important;
+        }
+
+        .footer span {
+            color: #fff;
+
+        }
+        .box{
+            background-color: #c2c2c2;
+        }
     </style>
 
 
@@ -71,6 +88,13 @@
                 <br>
                 <input type="submit" value="LOGIN">
             </form>
+        </div>
+        <div class="footer">
+            <div class="row mx-0">
+                <div class="col-md-12 box">
+                    <span>copy right by team 02 </span>
+                </div>
+            </div>
         </div>
 </body>
 

@@ -1,8 +1,14 @@
 <?php include 'header.php'; ?>
-<div>
+<style>
+    body {
+        background-color: gray;
+    }
+</style>
+
+<div style="color: #fff;">
     <div style="margin: auto; width: auto; padding: 50px;">
         <h3 style="padding-bottom: 15px;">Fuel Station deatils</h3>
-        <table id="example" class="table table-striped" style="width:100%">
+        <table id="example" class="table table-striped" style="width:100%; color: #fff;">
             <thead>
                 <tr>
                     <th>Request ID</th>
@@ -74,6 +80,11 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+
+
     $('button.myModal').on('click', function() {
 
         var bb = $(this).attr("myid");
@@ -95,3 +106,4 @@
         $('#exampleModalCenter').modal('hide');
     });
 </script>
+<?php include 'Footer.php'; ?>

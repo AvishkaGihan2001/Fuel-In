@@ -28,7 +28,7 @@ if (!$conn) {
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Fuel Station Name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="servicestationname" name="servicestationname" value="<?php echo $servicestationname; ?>" required />
+                            <input type="text" class="form-control" id="servicestationname" name="servicestationname" value="<?php echo $servicestationname; ?>" required  />
                         </div>
                     </div>
                     <div class="form-group row">

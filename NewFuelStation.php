@@ -4,6 +4,13 @@
         background-image: linear-gradient(#DD5E89, #F7BB97);
         background-size: auto;
     }
+    .btn-update{
+        background-color: #009695;
+        
+    }
+    .btn-update:hover{
+        background-color: #c2c2c2;
+    }
 </style>
 
 
@@ -26,7 +33,7 @@
         <input type="number" name="capacity" id="capacity" value="" required />
         <br /><br />
 
-        <input class="btn btn-success" type="submit" value="Submit" />
+        <input class="btn btn-success btn-update" type="submit" value="Submit" />
     </form>
 </div>
 <?php
@@ -96,7 +103,7 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
                         echo "<td>" . $row["address"] . "</td>";
                         echo "<td>" . $row["capacity"] . "</td>";
                         echo "<td>" . $row["contactno"] . "</td>";
-                        echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
+                        echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success btn-update' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
                         echo "<td></td>";
                         echo "</tr>";
                     }
