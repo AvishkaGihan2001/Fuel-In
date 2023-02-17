@@ -1,105 +1,90 @@
 <?php include 'header.php'; ?>
-<!-- Carousel wrapper -->
-<div
-  id="carouselBasicExample"
-  class="carousel slide carousel-fade"
-  data-mdb-ride="carousel"
->
-  <!-- Indicators -->
-  <div class="carousel-indicators">
-    <button
-      type="button"
-      data-mdb-target="#carouselBasicExample"
-      data-mdb-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    <button
-      type="button"
-      data-mdb-target="#carouselBasicExample"
-      data-mdb-slide-to="1"
-      aria-label="Slide 2"
-    ></button>
-    <button
-      type="button"
-      data-mdb-target="#carouselBasicExample"
-      data-mdb-slide-to="2"
-      aria-label="Slide 3"
-    ></button>
-  </div>
+<form action="fuelrequest.php" method="Post">
+  <main class="login-form">
+    <div class="cotainer">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Fuel request</div>
+            <div class="card-body">
+              <form action="#" method="POST" name="register">
 
-  <!-- Inner -->
-  <div class="carousel-inner">
-    <!-- Single item -->
-    <div class="carousel-item active">
-      <img
-        src="fossil-fuels-being-produced-at-fuel-plant.jpeg"
-        class="d-block w-100"
-        alt="Sunset Over the City"
-      />
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>
-          Nulla vitae elit libero, a pharetra augue mollis interdum.
-        </p>
+                <div class="form-group row">
+                  <label for="servicestationname" class="col-md-4 col-form-label text-md-right">Service Station Name</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="servicestationname" name="servicestationname" />
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="fueltype" class="col-md-4 col-form-label text-md-right">Fuel Type</label>
+                  <div class="col-md-6">
+                    <label for="petrol" class="radio-inline"><input type="radio" name="fueltype" value="petrol" id="petrol" />Petrol</label> <br>
+                    <label for="diesel" class="radio-inline"><input type="radio" name="fueltype" value="diesel" id="diesel" />Diesel</label>
+                  </div>
+                </div>
+
+
+
+
+                <div class="form-group row">
+                  <label for="reqQty" class="col-md-4 col-form-label text-md-right">Required Quantity</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="reqQty" name="reqQty" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="reqDate" class=" col-md-4 col-form-label text-md-right">Required Date</label>
+                  <div class="col-md-6">
+                    <input type="date" class="form-control" id="reqDate" name="reqDate" />
+                  </div>
+
+                </div>
+
+
+
+                <div class="col-md-6 offset-md-4">
+                  <input class="btn btn-success" type="submit" value="Request" />
+                </div>
+              </form>
+
+            </div>
+
+
+          </div>
+        </div>
       </div>
-    </div>
+      <?php
+      include 'mysqldbconnection.php';
 
-    <!-- Single item -->
-    <div class="carousel-item">
-      <img
-        src="fossil-fuel-hero.jpg"
-        class="d-block w-100"
-        alt="Canyon at Nigh"
-      />
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </div>
-    </div>
+      if (isset($_POST['servicestationname'])) {
+        $servicestationname = $_POST['servicestationname'];
+        $fuel_type = $_POST['fueltype'];
+        $reqQty = $_POST['reqQty'];
+        $date = $_POST['reqDate'];
+        $status = "pending";
 
-    <!-- Single item -->
-    <div class="carousel-item">
-      <img
-        src="bigstock-nuclear-power-plant-jaslovske-304392466-1320x742.jpg"
-        class="d-block w-100"
-        alt="Cliff Above a Stormy Sea"
-      />
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- Inner -->
 
-  <!-- Controls -->
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-mdb-target="#carouselBasicExample"
-    data-mdb-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-mdb-target="#carouselBasicExample"
-    data-mdb-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-<!-- Carousel wrapper -->
-<script type="text/javascript">
-$('#carouselExampleIndicators').on('slide.bs.carousel', function () {
-  // do something...
-})</script>
+        if (!$conn) {
+          die("Connection failed: " . mysqli_connect_error());
+        } else {
+
+
+          $sql = "insert into fuelrequest (servicestationname,fueltype,reqQty,reqDate,status) values ('" . $servicestationname . "' , '" . $fuel_type . "' , '" . $reqQty . "', '" . $date . "', '" . $status . "') ";
+
+          if ($connect->query($sql) === TRUE) {
+            echo "<script> alert('Request sent successfully');</script>";
+          } else {
+            echo "<script> alert('Error: " . $sql . "<br>" . $connect->error . "');</script>";
+          }
+
+          $connect->close();
+        }
+      }
+      ?>
+
+      </body>
+
+      </html>

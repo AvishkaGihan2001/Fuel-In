@@ -40,7 +40,7 @@ if (!$conn) {
                         <br /><br />
 
                         <label>Role of the Employee : </label><br>
-                        <select name="sttype" id="sttype" required>
+                        <select name="sttype" id="sttype" value="<?php echo $stafftype;?>" required>
                             <option value="">Select the type</option>
                             <option value="Admin">Admin</option>
                             <option value="Dispatch Office">Dispatch Office</option>

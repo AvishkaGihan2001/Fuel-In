@@ -27,7 +27,7 @@
         <a class="nav-link active" href="Index.php">DASHBOARD</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Fuel Request</a>
+        <a class="nav-link" href="fuelrequest.php">Fuel Request</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
