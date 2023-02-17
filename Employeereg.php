@@ -41,9 +41,9 @@
         <label>Role of the Employee : </label><br>
         <select name="sttype" id="sttype" required>
             <option value="">Select the type</option>
-            <option value="1">Admin</option>
-            <option value="2">Dispatch Office</option>
-            <option value="3">station manger</option>
+            <option value="Admin">Admin</option>
+            <option value="Dispatch Office">Dispatch Office</option>
+            <option value="station manger">station manger</option>
         </select>
         <br /><br />
 
@@ -96,15 +96,15 @@
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $my_id = $row["eid"];
+                        $my_id = $row["id"];
                         echo "<tr>";
-                        echo "<td>" . $row["eid"] . "</td>";
+                        echo "<td>" . $row["id"] . "</td>";
                         echo "<td>" . $row["name"] . "</td>";
                         echo "<td>" . $row["nic"] . "</td>";
                         echo "<td>" . $row["type"] . "</td>";
                         echo "<td>" . $row["tel"] . "</td>";
                         echo "<td>" . $row["email"] . "</td>";
-                        echo "<td> <button class='btn btn-success' myid='" . $row['eid'] . "' onclick='staffUpdate(" . $my_id . ");'>Update</button></td>";
+                        echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
                         echo "<td></td>";
                         echo "</tr>";
                     }
@@ -144,6 +144,27 @@ if (isset($_POST["stname"]) && $_POST["stname"] != null) {
     }
 }
 ?>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 style="padding-bottom: 15px;">Employee profile create</h3>
+            <button id="hidem" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div id="modalContent"></div>
+
+
+            <div class="modal-footer">
+            <button type="button" id="bdel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- java script  -->
 <script>
     var prevScrollpos = window.pageYOffset;
@@ -156,6 +177,26 @@ if (isset($_POST["stname"]) && $_POST["stname"] != null) {
         }
         prevScrollpos = currentScrollPos;
     }
+    $('button.myModal').on('click', function() {
+
+        var bb = $(this).attr("myid");
+        $.ajax({
+            url: 'Employeemodal.php?myid=' + bb,
+            type: 'GET',
+            success: function(data) {
+                $('#modalContent').html(data);
+            }
+        });
+
+
+        $('#exampleModalCenter').modal('show');
+    });
+    $('#bdel').on('click', function() {
+        $('#exampleModalCenter').modal('hide');
+    });
+    $('#hidem').on('click', function() {
+        $('#exampleModalCenter').modal('hide');
+    });
 </script>
 
 <?php include 'footer.php'; ?>

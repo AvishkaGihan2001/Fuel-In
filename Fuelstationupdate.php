@@ -27,4 +27,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 }
-?>x
+?>
