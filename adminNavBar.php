@@ -14,6 +14,12 @@
     color: black !important;
     cursor: pointer;
   }
+  /* .navbar{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 1500px;
+  } */
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
   <a class="navbar-brand" href="#">
@@ -35,7 +41,6 @@
           Customer
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="Customer_Profile.php">Customer Profile</a>
           <a class="dropdown-item" href="CustomerReq.php">Customer Request</a>
         </div>
       </li>
@@ -45,7 +50,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="NewFuelStation.php">Register New Fuel Station</a>
-          <a class="dropdown-item" href="#">Fuel Station PRofile</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -54,7 +58,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="Employeereg.php">Create User</a>
-          <a class="dropdown-item" href="Employees_profile.php">user Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="Loginpage.php">Logout</a>
         </div>

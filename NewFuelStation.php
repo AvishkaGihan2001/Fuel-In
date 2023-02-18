@@ -18,19 +18,46 @@
     <h3 style="padding-bottom: 15px;">Fuel Station register</h3>
     <form action="NewFuelStation.php" method="POST" name="staffadd">
         <label>Station name : </label><br>
-        <input type="text" name="Fname" id="Fname" value="" required />
+        <input class="form-control type="text" name="Fname" id="Fname" value="" required />
         <br /><br />
 
-        <label>Station Address : </label><br>
-        <input type="text" name="address" id="address" value="" required />
+
+        <label>Station District : </label><br>
+        <select class="form-control" name="address" id="address" required>
+            <option value="">Select the District</option>
+            <option value="Colombo">Colombo</option>
+            <option value="Gampaha">Gampaha</option>
+            <option value="Kalutara">Kalutara</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Matale">Matale</option>
+            <option value="Nuwara Eliya">Nuwara Eliya</option>
+            <option value="Galle">Galle</option>
+            <option value="Matara">Matara</option>
+            <option value="Hambantota">Hambantota</option>
+            <option value="Jaffna">Jaffna</option>
+            <option value="Kilinochchi">Kilinochchi</option>
+            <option value="Mannar">Mannar</option>
+            <option value="Vavuniya">Vavuniya</option>
+            <option value="Mullaitivu">Mullaitivu</option>
+            <option value="Batticaloa">Batticaloa</option>
+            <option value="Ampara">Ampara</option>
+            <option value="Trincomalee">Trincomalee</option>
+            <option value="Kurunegala">Kurunegala</option>
+            <option value="Puttalam">Puttalam</option>
+            <option value="Anuradhapura">Anuradhapura</option>
+            <option value="Polonnaruwa">Polonnaruwa</option>
+            <option value="Badulla">Badulla</option>
+            <option value="Moneragala">Moneragala</option>
+            <option value="Ratnapura">Ratnapura</option>
+        </select>
         <br /><br />
 
         <label>Station contact number :</label><br>
-        <input type="text" name="contactno" id="contactno" value="" required />
+        <input class="form-control type="text" name="contactno" id="contactno" value="" required />
         <br /><br />
 
         <label>Capacity of the Station : </label><br>
-        <input type="number" name="capacity" id="capacity" value="" required />
+        <input class="form-control type="number" name="capacity" id="capacity" value="" required />
         <br /><br />
 
         <input class="btn btn-success btn-update" type="submit" value="Submit" />
@@ -75,7 +102,7 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
             <tr>
                 <th>EID</th>
                 <th>Station name</th>
-                <th>Address</th>
+                <th>District</th>
                 <th>Capacity of the Station</th>
                 <th>Station contact number</th>
                 <th>Update</th>

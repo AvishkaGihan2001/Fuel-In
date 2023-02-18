@@ -1,9 +1,10 @@
 <?php
-$servicestationname = "";
-$fuel_type = "";
-$reqQty = "";
-$date = "";
-$resdate = "";
+$full_name ="";
+$email ="";
+$nic="";
+$fuel_amount =""; 
+$station ="";
+$date ="";
 $status = "";
 
 include 'mysqldbconnection.php';
@@ -11,48 +12,55 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 } else {
     $my_id = $_REQUEST['myid'];
-    $sql = "SELECT * FROM fuelrequest WHERE  id='$my_id' ";
+    $sql = "SELECT * FROM req_fuel WHERE  id='$my_id' ";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $servicestationname = $row["servicestationname"];
-            $fuel_type = $row["fueltype"];
-            $reqQty = $row["reqQty"];
-            $date = $row["reqDate"];
-            $resdate = $row["resdate"];
+            $full_name = $row["full_name"];
+            $email =$row["email"];
+            $nic=$row["nic"];
+            $fuel_amount =$row["fuel_amount"];
+            $station =$row["station"];
+            $date =$row["date"];
             $status = $row["status"];
 ?>
             <div class="modal-body">
-                <form action="fuelrequestupdate.php" method="Post">
+                <form action="CustomerReqUpdate.php" method="Post">
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Fuel Station Name</label>
+                        <label class="col-md-4 col-form-label text-md-right">Customer Full Name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="servicestationname" name="servicestationname" value="<?php echo $servicestationname; ?>" required  />
+                            <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo $full_name; ?>" required  />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Fuel Type</label>
+                        <label class="col-md-4 col-form-label text-md-right">Customer Email Address</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="fueltype" name="fueltype" value="<?php echo $fuel_type; ?>" required />
+                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Required Qty (L)</label>
+                        <label class="col-md-4 col-form-label text-md-right">Customer NIC</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="reqQty" name="reqQty" value="<?php echo $reqQty; ?>" required />
+                            <input type="text" class="form-control" id="nic" name="nic" value="<?php echo $nic; ?>" required />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class=" col-md-4 col-form-label text-md-right">Required Date</label>
+                        <label class=" col-md-4 col-form-label text-md-right">Request Fuel Amount</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="reqDate" name="reqDate" value="<?php echo $date; ?>" required />
+                            <input type="text" class="form-control" id="fuel_amount" name="fuel_amount" value="<?php echo $fuel_amount; ?>" required />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class=" col-md-4 col-form-label text-md-right">Respond Date</label>
+                        <label class=" col-md-4 col-form-label text-md-right">Request Station</label>
                         <div class="col-md-6">
-                            <input type="date" class="form-control" id="resdate" name="resdate" value="<?php echo $resdate; ?>" required />
+                            <input type="text" class="form-control" id="station" name="station" value="<?php echo $station; ?>" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class=" col-md-4 col-form-label text-md-right">Request date</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="date" name="date" value="<?php echo $date; ?>" required />
                         </div>
                     </div>
                     <div class="form-group row">

@@ -14,7 +14,7 @@
                     <th>Request ID</th>
                     <th>Station name</th>
                     <th>Fuel Type</th>
-                    <th>Reuest Qty</th>
+                    <th>Reuest Qty (L)</th>
                     <th>Request Date</th>
                     <th>Respond Date</th>
                     <th>Status</th>
