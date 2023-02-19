@@ -196,10 +196,6 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
     $('#hidem').on('click', function() {
         $('#exampleModalCenter').modal('hide');
     });
-
-
-
-
 </script>
 
 

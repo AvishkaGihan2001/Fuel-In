@@ -1,34 +1,11 @@
-<?php
-   include('connect/connection.php');
-   
-   if (isset($_POST['full_name'])) {
-       $full_name = $_POST['full_name'];
-       $email = $_POST['email'];
-       $nic = $_POST['nic'];
-       $fuel_amount = $_POST['fuel_amount'];
-       $station = $_POST['station'];
-       $date = $_POST['date'];
-
-       
-       if ($connect->connect_error) {
-        die("Connection failed: " . $connect->connect_error);
-      
-    } else {
-
-
-        $sql = "insert into req_fuel (full_name,email,nic,fuel_amount,station,date) values ('" . $full_name . "','". $email . "', '" . $nic . "', '" .$fuel_amount . "', '" . $station . "','". $date ."') ";
-
-        if ($connect->query($sql) === TRUE) {
-            echo "<script> alert('Request sent successfully');</script>";
-          } else {
-            echo "<script> alert('Error: " . $sql . "<br>" . $connect->error . "');</script>";
-          }
-          
-          $connect->close();
-        }
-
-
-
-
-}
-?>
+<?php include 'header.php'; ?>
+<style type="text/css">
+  .shadow-inner{
+    -webkit-box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
+-moz-box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
+box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
+  }
+  </style>
+<div class="bg-image shadow-inner">
+  <img src="fossil-fuel-hero.jpg" class="w-100" />
+</div><?php include 'footer.php'; ?>

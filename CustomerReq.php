@@ -1,15 +1,19 @@
 <?php include 'header.php'; ?>
 <style>
     body {
-        background-color: #29397B;
+        background: #acb6e5;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #86fde8, #acb6e5);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-
 </style>
 
-<div style="color: #fff;">
+<div>
     <div style="margin: auto; width: auto; padding: 50px;">
         <h3 style="padding-bottom: 15px; text-align: center;">Customer Fual Request Deatils</h3>
-        <table id="example" class="table table-striped" style="width:100%; color: #fff;">
+        <table id="example" class="table table-striped" style="width:100%; ">
             <thead>
                 <tr>
                     <th>Request ID</th>
