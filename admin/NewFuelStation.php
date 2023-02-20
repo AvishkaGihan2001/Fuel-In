@@ -18,7 +18,7 @@
     <h3 style="padding-bottom: 15px;">Fuel Station register</h3>
     <form action="NewFuelStation.php" method="POST" name="staffadd">
         <label>Station name : </label><br>
-        <input class="form-control type="text" name="Fname" id="Fname" value="" required />
+        <input class="form-control" type=text" name="Fname" id="Fname" value="" required />
         <br /><br />
 
 
@@ -53,11 +53,11 @@
         <br /><br />
 
         <label>Station contact number :</label><br>
-        <input class="form-control type="text" name="contactno" id="contactno" value="" required />
+        <input class="form-control type=text" name="contactno" id="contactno" value="" required />
         <br /><br />
 
         <label>Capacity of the Station : </label><br>
-        <input class="form-control type="number" name="capacity" id="capacity" value="" required />
+        <input class="form-control" type=number" name="capacity" id="capacity" value="" required />
         <br /><br />
 
         <input class="btn btn-success btn-update" type="submit" value="Submit" />

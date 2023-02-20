@@ -46,10 +46,11 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Fuel Station
+          Fuel 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="NewFuelStation.php">Register New Fuel Station</a>
+          <a class="dropdown-item" href="FuelPrice.php">Register New Fuel Price</a>
         </div>
       </li>
       <li class="nav-item dropdown">
