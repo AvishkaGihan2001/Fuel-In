@@ -24,7 +24,7 @@ $cuspendingResult = mysqli_fetch_assoc(mysqli_query($con, $cuspendingQuery));
 
 $cuspendingCount = $cuspendingResult['PendingCount'];
 
-$cusapprovalQuery = "SELECT Count(*) as ApprovalCount FROM req_fuel WHERE status= 'Approval'";
+$cusapprovalQuery = "SELECT Count(*) as ApprovalCount FROM req_fuel WHERE status= ' Approval'";
 $cusapprovalResult = mysqli_fetch_assoc(mysqli_query($con, $cusapprovalQuery));
 
 $cusapprovalCount = $cusapprovalResult['ApprovalCount'];

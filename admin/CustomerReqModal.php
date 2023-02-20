@@ -30,37 +30,37 @@ if (!$conn) {
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Customer Full Name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo $full_name; ?>" required  />
+                            <input type="text" class="form-control dis" id="full_name" name="full_name" value="<?php echo $full_name; ?>" required readonly />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Customer Email Address</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required />
+                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required readonly />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Customer NIC</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="nic" name="nic" value="<?php echo $nic; ?>" required />
+                            <input type="text" class="form-control" id="nic" name="nic" value="<?php echo $nic; ?>" required  readonly />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class=" col-md-4 col-form-label text-md-right">Request Fuel Amount</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="fuel_amount" name="fuel_amount" value="<?php echo $fuel_amount; ?>" required />
+                            <input type="text" class="form-control" id="fuel_amount" name="fuel_amount" value="<?php echo $fuel_amount; ?>" required readonly />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class=" col-md-4 col-form-label text-md-right">Request Station</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="station" name="station" value="<?php echo $station; ?>" required />
+                            <input type="text" class="form-control" id="station" name="station" value="<?php echo $station; ?>" required  readonly/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class=" col-md-4 col-form-label text-md-right">Request date</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="date" name="date" value="<?php echo $date; ?>" required />
+                            <input type="text" class="form-control" id="date" name="date" value="<?php echo $date; ?>" required readonly />
                         </div>
                     </div>
                     <div class="form-group row">

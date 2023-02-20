@@ -54,7 +54,7 @@
                             echo "<td>" . $row["date"] . "</td>";
                             echo "<td>" . $row["status"] . "</td>";
                             echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
-                            echo "<td></td>";
+                            echo "<td> <button   my2id='" . $row['id'] . "' class='myModal2 btn btn-success' data-toggle='modal' data-target='#exampleModalCenter2'>Notify</button></td>";
                             echo "</tr>";
                         }
                     }
@@ -66,6 +66,8 @@
         </table>
     </div>
 </div>
+
+<!-- status of the customer request -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -86,12 +88,33 @@
     </div>
 </div>
 
+<!-- customer payment notifucation -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="padding-bottom: 15px;">customer Request approvel</h3>
+                <button id="bhidem" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div id="modalContent2"></div>
+
+
+            <div class="modal-footer">
+                <button type="button" id="bbdel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable();
     });
 
-
+//customer request
     $('button.myModal').on('click', function() {
 
         var bb = $(this).attr("myid");
@@ -111,6 +134,28 @@
     });
     $('#hidem').on('click', function() {
         $('#exampleModalCenter').modal('hide');
+    });
+
+// customer notifications button
+    $('button.myModal2').on('click', function() {
+
+        var bb = $(this).attr("my2id");
+        $.ajax({
+            url: 'CustomerReqModalNotify.php?my2id=' + bb,
+            type: 'GET',
+            success: function(data) {
+                $('#modalContent2').html(data);
+            }
+        });
+
+
+        $('#exampleModalCenter2').modal('show');
+    });
+    $('#bbdel').on('click', function() {
+        $('#exampleModalCenter2').modal('hide');
+    });
+    $('#bhidem').on('click', function() {
+        $('#exampleModalCenter2').modal('hide');
     });
 </script>
 <?php include 'Footer.php'; ?>
