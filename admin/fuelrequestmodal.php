@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 } else {
     $my_id = $_REQUEST['myid'];
-    $sql = "SELECT * FROM fuelrequest WHERE  id='$my_id' ";
+    $sql = "SELECT * FROM fuelrequest WHERE  frid='$my_id' ";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

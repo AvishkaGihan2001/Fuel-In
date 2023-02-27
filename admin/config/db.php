@@ -5,7 +5,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'fuelin');
+define('DB_NAME', 'fuel_in');
 
 date_default_timezone_set("Asia/Colombo");
 

@@ -21,7 +21,7 @@ if (isset($_POST["servicestationname"])&& $_POST["servicestationname"] != null) 
         reqDate='$date',
         resdate= '$resdate',
         status=' $status'
-        Where id = '$id'";
+        Where frid = '$id'";
         if ($conn->query($sql) === TRUE) {
             echo "<script> alert('station request update successfully');</script>";
             $_POST["servicestationname"] = NULL;

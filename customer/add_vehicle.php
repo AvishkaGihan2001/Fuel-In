@@ -1,64 +1,54 @@
 <?php
 include('navbar.php');
+session_start();
 ?>
 
 <?php
-   include('connect/connection.php');
-   
-   if (isset($_POST['vno'])) {
-       $vno = $_POST['vno'];
-       $chano = $_POST['chano'];
-       $vehicle_type = $_POST['vehicle_type'];
-       
-       if ($connect->connect_error) {
+include('connect/connection.php');
+
+if (isset($_POST['vno'])) {
+    $vno = $_POST['vno'];
+    $chano = $_POST['chano'];
+    $vehicle_type = $_POST['vehicle_type'];
+    $SessUserId  = $_SESSION['SessUserId'];
+    $SessNameFull = $_SESSION['SessNameFull'];
+    $SessStCode   = $_SESSION['SessStCode'];
+    $SessEmail   =  $_SESSION['SessEmail'];
+    $SessNic   = $_SESSION['SessNic'];
+
+    if ($connect->connect_error) {
         die("Connection failed: " . $connect->connect_error);
-      
     } else {
+        $is_ok_to_add_product = false;
 
+        $sql = "SELECT * From add_vehicle where vehicle_no ='" . $vno . "'";
 
-        $sql = "insert into add_vehicle (vehicle_no,chasse_no,vehicle_type) values ('" . $vno . "', '" . $chano . "', '" .$vehicle_type . "') ";
+        $result = $connect->query($sql);
+        if ($result->num_rows > 0) {
+            echo "<script>alert('There is already a vehicle in this number.. Try again..');</script>";
+            $_POST["vehicle_no"] = null;
+        } else {
+            $is_ok_to_add_product = true;
+        }
+        $connect->close();
+    }
+    if ($is_ok_to_add_product) {
+        include('connect/connection.php');
+
+        $sql = "insert into add_vehicle (email,vehicle_no,chasse_no,vehicle_type) values ('" . $SessEmail . "','" . $vno . "', '" . $chano . "', '" . $vehicle_type . "') ";
 
         if ($connect->query($sql) === TRUE) {
             echo "<script> alert('Vehicle added successfully');</script>";
-          } else {
+        } else {
             echo "<script> alert('Error: " . $sql . "<br>" . $connect->error . "');</script>";
-          }
-          
-          $connect->close();
-
-
-
-
-
         }
 
-
-
-
+        $connect->close();
+    }
 }
+
+
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!doctype html>
 <html lang="en">
@@ -96,6 +86,8 @@ include('navbar.php');
                         <div class="card-header">Add vehicle</div>
                         <div class="card-body">
                             <form action="#" method="POST" name="register">
+
+                                
 
                                 <div class="form-group row">
                                     <label for="vno" class="col-md-4 col-form-label text-md-right">Vehicle number</label>

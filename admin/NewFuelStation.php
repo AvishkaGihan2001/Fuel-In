@@ -64,9 +64,6 @@
     </form>
 </div>
 <?php
-
-
-
 if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
 
     $fuelstation = $_POST["Fname"];
@@ -106,7 +103,6 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
                 <th>Capacity of the Station</th>
                 <th>Station contact number</th>
                 <th>Update</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -131,7 +127,6 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
                         echo "<td>" . $row["capacity"] . "</td>";
                         echo "<td>" . $row["contactno"] . "</td>";
                         echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success btn-update' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
-                        echo "<td></td>";
                         echo "</tr>";
                     }
                 }
@@ -181,7 +176,7 @@ if (isset($_POST["Fname"]) && $_POST["Fname"] != NULL) {
 
         var bb = $(this).attr("myid");
         $.ajax({
-            url: 'Modal.php?myid='+bb,
+            url: 'NewFuelStationModal.php?myid='+bb,
             type: 'GET',
             success: function(data) {
                 $('#modalContent').html(data);             

@@ -3,6 +3,7 @@ $full_name ="";
 $email ="";
 $nic="";
 $fuel_amount =""; 
+$fuel_type =""; 
 $station ="";
 $date ="";
 $status = "";
@@ -12,7 +13,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 } else {
     $my_id = $_REQUEST['myid'];
-    $sql = "SELECT * FROM req_fuel WHERE  id='$my_id' ";
+    $sql = "SELECT  * FROM fueltype LEFT JOIN req_fuel ON fueltype.fuaname = req_fuel.fuel_type WHERE req_fuel.req_id='$my_id' ";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -21,9 +22,11 @@ if (!$conn) {
             $email =$row["email"];
             $nic=$row["nic"];
             $fuel_amount =$row["fuel_amount"];
+            $fuel_type =$row["fuel_type"];
             $station =$row["station"];
             $date =$row["date"];
             $status = $row["status"];
+            $price = $row["price"]; 
 ?>
             <div class="modal-body">
                 <form action="CustomerReqUpdate.php" method="Post">
@@ -52,6 +55,12 @@ if (!$conn) {
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class=" col-md-4 col-form-label text-md-right">Request Fuel Type</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="fuel_type" name="fuel_type" value="<?php echo $fuel_type; ?>" required readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class=" col-md-4 col-form-label text-md-right">Request Station</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="station" name="station" value="<?php echo $station; ?>" required  readonly/>
@@ -74,6 +83,7 @@ if (!$conn) {
                         </div>
                     </div>
                     <input style="display: none;" type="text" name="sid" id="sid" value="<?php echo $my_id; ?>" required />
+                    <input style="display: none;" type="text" name="price" id="price" value="<?php echo $price; ?>" required />
 
                     <div class="col-md-6 offset-md-4">
                         <input class="btn btn-success" type="submit" value="Save changes" />

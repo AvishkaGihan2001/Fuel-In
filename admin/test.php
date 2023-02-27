@@ -1,11 +1,18 @@
-<?php include 'header.php'; ?>
-<style type="text/css">
-  .shadow-inner{
-    -webkit-box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
--moz-box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
-box-shadow: inset 12px 12px 25px -7px rgba(0,0,0,0.98);
-  }
-  </style>
-<div class="bg-image shadow-inner">
-  <img src="fossil-fuel-hero.jpg" class="w-100" />
-</div><?php include 'footer.php'; ?>
+<?php include 'header.php';
+include './config/db.php';
+include './services/common.php';
+
+$pendingQuery = "SELECT Count(*) as PendingCount FROM fuelrequest WHERE status= 'Pending'";
+$pendingResult = mysqli_fetch_assoc(mysqli_query($con, $pendingQuery));
+
+$pendingCount = $pendingResult['PendingCount'];
+
+$approvalQuery = "SELECT Count(*) as ApprovalCount FROM fuelrequest WHERE status= 'Approval'";
+$approvalResult = mysqli_fetch_assoc(mysqli_query($con, $approvalQuery));
+
+$approvalCount = $approvalResult['ApprovalCount'];
+
+$rejectQuery = "SELECT Count(*) as RejectCount FROM fuelrequest WHERE status= 'Reject'";
+$rejectResult = mysqli_fetch_assoc(mysqli_query($con, $rejectQuery));
+
+$rejectCount = $rejectResult['RejectCount'];

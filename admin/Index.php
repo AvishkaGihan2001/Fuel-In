@@ -7,12 +7,12 @@ $pendingResult = mysqli_fetch_assoc(mysqli_query($con, $pendingQuery));
 
 $pendingCount = $pendingResult['PendingCount'];
 
-$approvalQuery = "SELECT Count(*) as ApprovalCount FROM fuelrequest WHERE status= ' Approval'";
+$approvalQuery = "SELECT Count(*) as ApprovalCount FROM fuelrequest WHERE status= 'Approval'";
 $approvalResult = mysqli_fetch_assoc(mysqli_query($con, $approvalQuery));
 
 $approvalCount = $approvalResult['ApprovalCount'];
 
-$rejectQuery = "SELECT Count(*) as RejectCount FROM fuelrequest WHERE status= ' Reject'";
+$rejectQuery = "SELECT Count(*) as RejectCount FROM fuelrequest WHERE status= 'Reject'";
 $rejectResult = mysqli_fetch_assoc(mysqli_query($con, $rejectQuery));
 
 $rejectCount = $rejectResult['RejectCount'];
@@ -24,12 +24,12 @@ $cuspendingResult = mysqli_fetch_assoc(mysqli_query($con, $cuspendingQuery));
 
 $cuspendingCount = $cuspendingResult['PendingCount'];
 
-$cusapprovalQuery = "SELECT Count(*) as ApprovalCount FROM req_fuel WHERE status= ' Approval'";
+$cusapprovalQuery = "SELECT Count(*) as ApprovalCount FROM req_fuel WHERE status= 'Approval'";
 $cusapprovalResult = mysqli_fetch_assoc(mysqli_query($con, $cusapprovalQuery));
 
 $cusapprovalCount = $cusapprovalResult['ApprovalCount'];
 
-$cusrejectQuery = "SELECT Count(*) as RejectCount FROM req_fuel WHERE status= ' Reject'";
+$cusrejectQuery = "SELECT Count(*) as RejectCount FROM req_fuel WHERE status= 'Reject'";
 $cusrejectResult = mysqli_fetch_assoc(mysqli_query($con, $cusrejectQuery));
 
 $cusrejectCount = $cusrejectResult['RejectCount'];
@@ -234,7 +234,7 @@ if ($results = mysqli_query($con, $sql)) {
                 </div>
               </div>
               <div class="card-footer d-flex align-items-center justify-content-center">
-                <a class="small text-white stretched-link" href="fuelrequest.php">
+                <a class="small text-white stretched-link" href="CustomerReq.php">
                   View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -252,7 +252,7 @@ if ($results = mysqli_query($con, $sql)) {
                 </div>
               </div>
               <div class="card-footer d-flex align-items-center justify-content-center">
-                <a class="small text-white stretched-link" href="fuelrequest.php">
+                <a class="small text-white stretched-link" href="CustomerReq.php">
                   View Details
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>

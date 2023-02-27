@@ -20,7 +20,8 @@
                     <th>Customer Full Name</th>
                     <th>Customer email</th>
                     <th>Customer NIC No.</th>
-                    <th>Request Fuel Amount</th>
+                    <th>Request Fuel Amount</th>                   
+                    <th>Request Fuel Type</th>
                     <th>Request Station</th>
                     <th>Request date</th>
                     <th>Status</th>
@@ -42,19 +43,24 @@
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $my_id = $row["id"];
+                            $my_id = $row["req_id"];
 
                             echo "<tr>";
-                            echo "<td>" . $row["id"] . "</td>";
+                            echo "<td>" . $row["req_id"] . "</td>";
                             echo "<td>" . $row["full_name"] . "</td>";
                             echo "<td>" . $row["email"] . "</td>";
                             echo "<td>" . $row["nic"] . "</td>";
                             echo "<td>" . $row["fuel_amount"] . "</td>";
+                            echo "<td>" . $row["fuel_type"] . "</td>";
                             echo "<td>" . $row["station"] . "</td>";
                             echo "<td>" . $row["date"] . "</td>";
                             echo "<td>" . $row["status"] . "</td>";
-                            echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
-                            echo "<td> <button   my2id='" . $row['id'] . "' class='myModal2 btn btn-success' data-toggle='modal' data-target='#exampleModalCenter2'>Notify</button></td>";
+                            if ( $row["status"] == 'Pending'){
+                                echo "<td> <button   myid='" . $row['req_id'] . "' class='myModal btn btn-success' data-toggle='modal'  data-target='#exampleModalCenter'>Update</button></td>";
+                            }else{
+                                echo "<td> <button   myid='" . $row['req_id'] . "' class='myModal btn btn-success' data-toggle='modal'  data-target='#exampleModalCenter' disabled >Update</button></td>";
+                            }
+                          
                             echo "</tr>";
                         }
                     }
@@ -89,25 +95,6 @@
 </div>
 
 <!-- customer payment notifucation -->
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 style="padding-bottom: 15px;">customer Request approvel</h3>
-                <button id="bhidem" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div id="modalContent2"></div>
-
-
-            <div class="modal-footer">
-                <button type="button" id="bbdel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -136,26 +123,5 @@
         $('#exampleModalCenter').modal('hide');
     });
 
-// customer notifications button
-    $('button.myModal2').on('click', function() {
-
-        var bb = $(this).attr("my2id");
-        $.ajax({
-            url: 'CustomerReqModalNotify.php?my2id=' + bb,
-            type: 'GET',
-            success: function(data) {
-                $('#modalContent2').html(data);
-            }
-        });
-
-
-        $('#exampleModalCenter2').modal('show');
-    });
-    $('#bbdel').on('click', function() {
-        $('#exampleModalCenter2').modal('hide');
-    });
-    $('#bhidem').on('click', function() {
-        $('#exampleModalCenter2').modal('hide');
-    });
 </script>
 <?php include 'Footer.php'; ?>

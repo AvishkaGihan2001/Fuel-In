@@ -1,43 +1,59 @@
 <?php
 session_start();
-    include('connect/connection.php');
+include('connect/connection.php');
 
-    if(isset($_POST["login"])){
-        $email = mysqli_real_escape_string($connect, trim($_POST['email']));
-        $password = trim($_POST['password']);
-      
+if (isset($_POST["login"])) {
+    $email = mysqli_real_escape_string($connect, trim($_POST['email']));
+    $password = trim($_POST['password']);
 
-        $sql = mysqli_query($connect, "SELECT * FROM login where email = '$email'");
-        $count = mysqli_num_rows($sql);
 
-            if($count > 0){
-                $fetch = mysqli_fetch_assoc($sql);
-                $hashpassword = $fetch["password"];
-    
-                if($fetch["status"] == 0){
-                    ?>
-                    <script>
-                        alert("Please verify email account before login.");
-                    </script>
-                    <?php
-                }else if(password_verify($password, $hashpassword)){
-                    ?>
-                    <script>
-                        alert("login in successfully");
-                        //direct to dashboard
-                        window.location.href = "dashboard.php";
-                    </script>
-                    <?php
-                }else{
-                    ?>
-                    <script>
-                        alert("email or password invalid, please try again.");
-                    </script>
-                    <?php
-                }
+    $sql = mysqli_query($connect, "SELECT * FROM login where email = '$email'");
+    $count = mysqli_num_rows($sql);
+
+    if ($count > 0) {
+        $fetch = mysqli_fetch_assoc($sql);
+        $hashpassword = $fetch["password"];
+
+        if ($fetch["status"] == 0) {
+?>
+            <script>
+                alert("Please verify email account before login.");
+            </script>
+            <?php
+        } else if (password_verify($password, $hashpassword)) {
+            $SessUserId   = $fetch['user_id'];
+            $SessNameFull = $fetch["full_name"];
+            $SessStCode   = $fetch["status"];
+            $SessEmail   = $fetch["email"];
+            $SessNic   = $fetch["nic"];
+
+            if ($SessStCode == 1) {
+                $_SESSION['SessUserId']    = $SessUserId;
+                $_SESSION['SessNameFull'] = $SessNameFull;
+                $_SESSION['SessStCode']   = $SessStCode;
+                $_SESSION['SessEmail']   =  $SessEmail;
+                $_SESSION['SessNic'] = "$SessNic";
+
+            ?>
+                <script>
+                    alert("login successfull !!");
+                    //direct to dashboard
+                    window.location.href = "dashboard.php";
+                </script>
+            <?php
             }
-                
+            ?>
+
+        <?php
+        } else {
+        ?>
+            <script>
+                alert("email or password invalid, please try again.");
+            </script>
+<?php
+        }
     }
+}
 
 ?>
 
@@ -49,6 +65,7 @@ session_start();
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -67,87 +84,90 @@ session_start();
 
     <title>Login Form</title>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="#">Welcome to Fuel In</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="Images/logo2.png" style="width:100px;"></a>
+            <a class="navbar-brand" href="#">Welcome to Fuel In</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php" style="font-weight:bold; color:black; text-decoration:underline">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register.php">Register</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php" style="font-weight:bold; color:black; text-decoration:underline">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                </ul>
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Login</div>
-                    <div class="card-body">
-                        <form action="#" method="POST" name="login">
-                            <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="email" required autofocus>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required>
-                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember"> Remember Me
-                                        </label>
+    <main class="login-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Login</div>
+                        <div class="card-body">
+                            <form action="#" method="POST" name="login">
+                                <div class="form-group row">
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="email_address" class="form-control" name="email" required autofocus>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-6 offset-md-4">
-                                <input type="submit" value="Login" name="login">
-                                <a href="recover_psw.php" class="btn btn-link">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="password" class="form-control" name="password" required>
+                                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6 offset-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="remember"> Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 offset-md-4">
+                                    <input type="submit" value="Login" name="login">
+                                    <a href="recover_psw.php" class="btn btn-link">
+                                        Forgot Your Password?
+                                    </a>
+                                </div>
+                        </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
 
-</main>
+    </main>
 </body>
+
 </html>
 <script>
     const toggle = document.getElementById('togglePassword');
     const password = document.getElementById('password');
 
-    toggle.addEventListener('click', function(){
-        if(password.type === "password"){
+    toggle.addEventListener('click', function() {
+        if (password.type === "password") {
             password.type = 'text';
-        }else{
+        } else {
             password.type = 'password';
         }
         this.classList.toggle('bi-eye');

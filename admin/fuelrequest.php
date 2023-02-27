@@ -38,17 +38,17 @@ background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, F
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $my_id = $row["id"];
+                            $my_id = $row["frid"];
 
                             echo "<tr>";
-                            echo "<td>" . $row["id"] . "</td>";
+                            echo "<td>" . $row["frid"] . "</td>";
                             echo "<td>" . $row["servicestationname"] . "</td>";
                             echo "<td>" . $row["fueltype"] . "</td>";
                             echo "<td>" . $row["reqQty"] . "</td>";
                             echo "<td>" . $row["reqDate"] . "</td>";
                             echo "<td>" . $row["resdate"] . "</td>";
                             echo "<td>" . $row["status"] . "</td>";
-                            echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
+                            echo "<td> <button   myid='" . $row['frid'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
                             echo "<td></td>";
                             echo "</tr>";
                         }

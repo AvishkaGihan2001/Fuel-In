@@ -1,34 +1,30 @@
 <?php include 'Header.php'; ?>
 <div style="margin: auto; width: auto; padding: 50px; float: left;">
-    <h3 style="padding-bottom: 15px;">Fuel Station register</h3>
-    <form action="NewFuelStation.php" method="POST" name="staffadd">
-        <label>Station District : </label><br>
-        <select class="form-control" name="address" id="address" required>
+    <h3 style="padding-bottom: 15px;">Fuel price register</h3>
+    <form action="FuelPrice.php" method="POST" name="staffadd">
+        <label>Fuel type : </label><br>
+        <select class="form-control" name="Fuelt" id="Fuelt" required>
             <option value="">Select the Fuel</option>
-            <option value="Colombo">Colombo</option>
-            <option value="Gampaha">Gampaha</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
         </select>
         <br />
         <label>Price :</label><br>
-        <input class="form-control type="text" name="contactno" id="contactno" value="" required />
+        <input class="form-control" type=" text" name="FPrice" id="Fprice" value="" required />
         <br /><br />
 
         <input class="btn btn-success btn-update" type="submit" value="Submit" />
     </form>
 </div>
-<?php include 'Footer.php'; ?>
 <div style="margin: auto; width: auto; padding: 50px; float: left;">
     <h3 style="padding-bottom: 15px;">Fuel Station deatils</h3>
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>EID</th>
-                <th>Station name</th>
-                <th>District</th>
-                <th>Capacity of the Station</th>
-                <th>Station contact number</th>
+                <th>ID</th>
+                <th>Fuel Name</th>
+                <th>Price of the Fuel (Rs)</th>
                 <th>Update</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +35,7 @@
                 die("Connection failed: " . mysqli_connect_error());
             } else {
 
-                $sql = "SELECT *  From fuelstation ";
+                $sql = "SELECT *  From fueltype ";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -48,12 +44,9 @@
 
                         echo "<tr>";
                         echo "<td>" . $row["id"] . "</td>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["address"] . "</td>";
-                        echo "<td>" . $row["capacity"] . "</td>";
-                        echo "<td>" . $row["contactno"] . "</td>";
+                        echo "<td>" . $row["fuaname"] . "</td>";
+                        echo "<td>" . $row["price"] . "</td>";
                         echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success btn-update' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
-                        echo "<td></td>";
                         echo "</tr>";
                     }
                 }
@@ -64,6 +57,8 @@
         </tbody>
     </table>
 </div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -84,3 +79,69 @@
         </div>
     </div>
 </div>
+<!-- insert queary to the fuel table -->
+<?php
+if (isset($_POST["Fuelt"]) && $_POST["Fuelt"] != NULL) {
+
+    $FuelType = $_POST["Fuelt"];
+    $Fuelprice = $_POST["FPrice"];
+
+    include 'mysqldbconnection.php';
+
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    } else {
+        $sql = "insert into fueltype (fuaname,price) 
+        values ('" . $FuelType . "', '" . $Fuelprice . "')";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script> alert('station details added successfully');</script>";
+            $_POST["Fuelt"] = NULL;
+            //   header("Location: NewFuelStation.php");
+
+            exit();
+        } else {
+            echo "<script> alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+        }
+        $conn->close();
+    }
+}
+?>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+
+
+    $('button.myModal').on('click', function() {
+
+        var bb = $(this).attr("myid");
+        $.ajax({
+            url: 'FuelPriceModal.php?myid=' + bb,
+            type: 'GET',
+            success: function(data) {
+                $('#modalContent').html(data);
+            }
+        });
+
+        $('#exampleModalCenter').modal('show');
+    });
+    $('#bdel').on('click', function() {
+        $('#exampleModalCenter').modal('hide');
+    });
+    $('#hidem').on('click', function() {
+        $('#exampleModalCenter').modal('hide');
+    });
+
+
+    function saffDelete() {
+        $.post('FuelPriceDelete.php', {
+            'fuelid': fuelid
+        }, function(result) {
+            alert(result)
+        })
+        location.reload();
+    };
+</script>
+<?php include 'Footer.php'; ?>

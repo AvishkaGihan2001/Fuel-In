@@ -76,14 +76,13 @@
 <body>
     <div id="fullbg" style="width: 100%; height: 100%;">
         <div id="login-content">
-            <form>
+            <form action="login.php">
                 <h1>Login Form</h1>
                 <input type="text" name="uname" id="uname" placeholder="&#128100; Email or Phone">
                 <br><br>
                 <input type="password" name="upass" id="upass" class="pass" placeholder="&#128274; Password">
                 <br><br>
                 <div style="text-align: left; margin-left: 30px;">
-                    <label>Forgot password?</label>
                 </div>
                 <br>
                 <input type="submit" value="LOGIN">

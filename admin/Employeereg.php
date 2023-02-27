@@ -25,7 +25,7 @@
     }
 </style>
 <!-- insert Data to the data base -->
-<div style="margin: auto; width: auto; padding: 50px; float: left;">
+<div style="margin: auto; width: auto; padding: 50px; float: left;" form-group row>
     <h3 style="padding-bottom: 15px;">Employee profile create</h3>
 
     <form action="Employeereg.php" method="POST" name="staffadd">
@@ -83,7 +83,6 @@
                 <th>Contact Number</th>
                 <th>Email Address</th>
                 <th>Update</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -105,7 +104,6 @@
                         echo "<td>" . $row["tel"] . "</td>";
                         echo "<td>" . $row["email"] . "</td>";
                         echo "<td> <button   myid='" . $row['id'] . "' class='myModal btn btn-success' data-toggle='modal' data-target='#exampleModalCenter'>Update</button></td>";
-                        echo "<td></td>";
                         echo "</tr>";
                     }
                 }
